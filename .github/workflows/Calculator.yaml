@@ -18,12 +18,7 @@ jobs:
       run: mkdir build
     - name: compilation
       working-directory: .
-      run: |
-        cd build
-        cmake ..
-        make .
+      run: cd build && cmake .. && make .
     - name: runTests
       working-directory: .
-      run:  | 
-        cd build
-        ctest -V
+      run: cd build & ctest -V
