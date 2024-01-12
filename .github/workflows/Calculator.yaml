@@ -16,9 +16,12 @@ jobs:
     - name: makeBuild
       working-directory: .
       run: mkdir build
-    - name: compilation
+    - name: CMake generation
       working-directory: .
-      run: cd build && cmake .. && make .
+      run: cd build && cmake ..
+    - name: Compilation
+      working-directory: .
+      run: cd build && make .
     - name: runTests
       working-directory: .
-      run: cd build & ctest -V
+      run: cd build && ctest -V
