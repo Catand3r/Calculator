@@ -17,10 +17,13 @@ jobs:
       working-directory: .
       run: mkdir build
     - name: compilation
-      working-directory: build/
+      working-directory: .
       run: |
+        cd build
         cmake ..
         make .
     - name: runTests
-      working-directory: build/
-      run: ctest -V
+      working-directory: .
+      run:  | 
+        cd build
+        ctest -V
