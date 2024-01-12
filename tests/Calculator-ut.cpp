@@ -71,3 +71,9 @@ TEST(CalculatorTest, Given2PlusKWhenExecuteIsCalledThenThrowException)
     Calculator calc;
     EXPECT_THROW(calc.execute("2+k"), std::invalid_argument);
 }
+
+TEST(CalculatorTest, Given2RaisedToThePowerOf2WhenExecuteIsCalleThenReturn4)
+{
+    Calculator calc;
+    EXPECT_EQ(calc.execute("2^2"), 4);
+}
