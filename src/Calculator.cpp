@@ -4,7 +4,7 @@
 #include <exception>
 #include "../include/Calculator.h"
 
-int Calculator::execute(std::string userInput) // ""
+int Calculator::execute(std::string userInput) const
 {
     if (userInput.empty())
     {
@@ -23,30 +23,35 @@ int Calculator::execute(std::string userInput) // ""
     }
 
     std::string number1;
-    std::copy(userInput.begin(), it, number1.begin()); // it == * // number1 == 4
-    int number1int = std::stoi(number1);               // "k+2"
+    std::copy(userInput.begin(), it, number1.begin());
+    int number1int = std::stoi(number1);
 
     std::string number2;
-    std::copy(it + 1, userInput.end(), number2.begin()); // number2 == *2
+    std::copy(it + 1, userInput.end(), number2.begin());
     int number2int = std::stoi(number2);
 
+    return performOperation(operation, number1int, number2int);
+}
+
+int Calculator::performOperation(const char operation, int firstNumber, int secondNumber) const
+{
     if (operation == '-')
     {
-        return number1int - number2int;
+        return firstNumber - secondNumber;
     }
     else if (operation == '+')
     {
-        return number1int + number2int;
+        return firstNumber + secondNumber;
     }
     else if (operation == '*')
     {
-        return number1int * number2int;
+        return firstNumber * secondNumber;
     }
     else if (operation == '/')
     {
-        if (number2int != 0)
+        if (secondNumber != 0)
         {
-            return number1int / number2int;
+            return firstNumber / secondNumber;
         }
         else
         {
@@ -56,6 +61,5 @@ int Calculator::execute(std::string userInput) // ""
     else
     {
         throw InvalidInput("Unknown operation");
-        //  return -1; // czy to jest wynik?? "3-4" , "3?4" -> -1
     }
 }

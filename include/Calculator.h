@@ -14,5 +14,8 @@ private:
 class Calculator
 {
 public:
-    int execute(std::string);
+    int execute(std::string) const;
+
+private:
+    int performOperation(char, int, int) const;
 };
