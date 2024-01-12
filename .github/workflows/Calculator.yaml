@@ -14,9 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: makeBuild
+      working-directory: .
       run: mkdir build
     - name: compilation
-      run: cmake ..
-            make
+      working-directory: build/
+      run: |
+        cmake ..
+        make .
     - name: runTests
+      working-directory: build/
       run: ctest -V
