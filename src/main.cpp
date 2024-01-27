@@ -4,7 +4,7 @@
 
 int main()
 {
-    Calculator calculator;
+    Calculator<int> calculator;
     std::cout << "Jakie chcesz wykonac dzialanie? \n";
     std::string userInput;
     std::cin >> userInput;
