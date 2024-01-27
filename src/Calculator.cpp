@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <exception>
+#include <cmath>
 #include "../include/Calculator.h"
 
 int Calculator::execute(std::string userInput) const
@@ -10,7 +11,7 @@ int Calculator::execute(std::string userInput) const
     {
         throw InvalidInput("No input");
     }
-    std::string operators = "+-*/";
+    std::string operators = "+-*/^";
     char operation;
     auto it = std::find_first_of(userInput.begin() + 1, userInput.end(), operators.begin(), operators.end());
     if (it != userInput.end())
@@ -57,6 +58,10 @@ int Calculator::performOperation(const char operation, int firstNumber, int seco
         {
             throw InvalidInput("Can't divide by 0");
         }
+    }
+    else if (operation == '^')
+    {
+        return std::pow(number1int, number2int);
     }
     else
     {
