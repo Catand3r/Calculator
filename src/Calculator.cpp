@@ -61,7 +61,7 @@ int Calculator::performOperation(const char operation, int firstNumber, int seco
     }
     else if (operation == '^')
     {
-        return std::pow(number1int, number2int);
+        return std::pow(firstNumber, secondNumber);
     }
     else
     {
