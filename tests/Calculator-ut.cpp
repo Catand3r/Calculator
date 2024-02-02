@@ -77,3 +77,39 @@ TEST(CalculatorTest, Given2RaisedToThePowerOf2WhenExecuteIsCalleThenReturn4)
     Calculator<int> calc;
     EXPECT_EQ(calc.execute("2^2"), 4);
 }
+
+TEST(CalculatorTest, Given10000000Plus10000000WhenExecuteIsCalledThenReturn20000000)
+{
+    Calculator<long long> calc;
+    EXPECT_EQ(calc.execute("10000000+10000000"), 20000000);
+}
+
+TEST(CalculatorTest, Given20000000Minus10000000WhenExecuteIsCalledThenReturn10000000)
+{
+    Calculator<long long> calc;
+    EXPECT_EQ(calc.execute("20000000-10000000"), 10000000);
+}
+
+TEST(CalculatorTest, Given1000000Times1000000WhenExecuteIsCalledThenReturn1000000000000)
+{
+    Calculator<long long> calc;
+    EXPECT_EQ(calc.execute("10000*10000"), 100000000);
+}
+
+TEST(CalculatorTest, Given1000000000000DividedBy1000000WhenExecuteIsCalledThenReturn1000000)
+{
+    Calculator<long long> calc;
+    EXPECT_EQ(calc.execute("100000000/10000"), 10000);
+}
+
+TEST(CalculatorTest, Given10ToThePowerOf11WhenExecuteIsCalledThenReturn100000000000)
+{
+    Calculator<long long> calc;
+    EXPECT_EQ(calc.execute("10^11"), 100000000000);
+}
+
+TEST(CalculatorTest, Given2AndAHalfPlus3AndAHalfWhenExecuteIsCalledThenRetrun6)
+{
+    Calculator<double> calc;
+    EXPECT_EQ(calc.execute("2.5+3.5"), 6);
+}
