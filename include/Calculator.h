@@ -4,6 +4,7 @@
 #include <string>
 #include <exception>
 #include <cmath>
+#include <iterator>
 #include <type_traits>
 
 class InvalidInput : public std::exception
@@ -48,10 +49,9 @@ T Calculator<T>::execute(std::string userInput) const
     }
 
     std::string number1;
-    std::copy(userInput.begin(), it, number1.begin());
+    std::copy(userInput.begin(), it, std::back_inserter(number1));
     std::string number2;
-    std::copy(it + 1, userInput.end(), number2.begin());
-
+    std::copy(it + 1, userInput.end(), std::back_inserter(number2));
     return performOperation(operation, getNumberFromString(number1), getNumberFromString(number2));
 }
 
