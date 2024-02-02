@@ -4,6 +4,7 @@
 #include <string>
 #include <exception>
 #include <cmath>
+#include <type_traits>
 
 class InvalidInput : public std::exception
 {
@@ -23,7 +24,8 @@ public:
     T execute(std::string) const;
 
 private:
-    T performOperation(char, int, int) const;
+    T performOperation(char, T, T) const;
+    T getNumberFromString(std::string input) const;
 };
 
 template <typename T>
@@ -47,17 +49,14 @@ T Calculator<T>::execute(std::string userInput) const
 
     std::string number1;
     std::copy(userInput.begin(), it, number1.begin());
-    int number1int = std::stoi(number1);
-
     std::string number2;
     std::copy(it + 1, userInput.end(), number2.begin());
-    int number2int = std::stoi(number2);
 
-    return performOperation(operation, number1int, number2int);
+    return performOperation(operation, getNumberFromString(number1), getNumberFromString(number2));
 }
 
 template <typename T>
-T Calculator<T>::performOperation(const char operation, int firstNumber, int secondNumber) const
+T Calculator<T>::performOperation(const char operation, T firstNumber, T secondNumber) const
 {
     if (operation == '-')
     {
@@ -89,5 +88,18 @@ T Calculator<T>::performOperation(const char operation, int firstNumber, int sec
     else
     {
         throw InvalidInput("Unknown operation");
+    }
+}
+
+template <typename T>
+T Calculator<T>::getNumberFromString(std::string input) const
+{
+    if (std::is_floating_point<T>::value)
+    {
+        return static_cast<T>(std::stold(input));
+    }
+    else
+    {
+        return static_cast<T>(std::stoll(input));
     }
 }

@@ -113,3 +113,9 @@ TEST(CalculatorTest, Given2AndAHalfPlus3AndAHalfWhenExecuteIsCalledThenRetrun6)
     Calculator<double> calc;
     EXPECT_EQ(calc.execute("2.5+3.5"), 6);
 }
+
+TEST(CalculatorTest, VeryBigIntegerValue)
+{
+    Calculator<long long> calc;
+    EXPECT_EQ(calc.execute("93558634998998998 + 1"), 93'558'634'998'998'999);
+}
